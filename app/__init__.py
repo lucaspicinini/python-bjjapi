@@ -6,7 +6,7 @@ from app.fighters.controller import fighters_bp
 from app.teams.controller import teams_bp
 from app.lineages.controller import lineages_bp
 from app.achievements.controller import achievements_bp
-from .db import db
+from app.db import db
 
 
 def create_app(config_name: str) -> Flask:
