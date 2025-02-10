@@ -7,7 +7,7 @@ def create_pagination(
         model: Team | Fighter | Lineage | Achievement,
         page: int | None=None
 ) -> dict[str, int | bool | list[Team | Fighter | Lineage | Achievement]]:
-    pagination = model.query.paginate(page, per_page=30)
+    pagination = model.query.paginate(page=page, per_page=30)
     return {
         "total": pagination.total,
         "pages": pagination.pages,
