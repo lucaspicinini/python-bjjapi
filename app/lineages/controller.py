@@ -1,12 +1,12 @@
 from flask import Blueprint
 
 from app.lineages.model import Lineage
-from app.utils import create_pagination, ApiPagination
+from app.utils import create_pagination
 
 lineages_bp = Blueprint('lineages', __name__, url_prefix='/lineages')
 
 @lineages_bp.route('/')
-def index(page: int | None=None) -> dict[str, ApiPagination | list[Lineage]]:
+def index(page: int | None=None) -> dict[str, int | bool | list[Lineage]]:
     return create_pagination(Lineage(), page)
 
 @lineages_bp.route('/<int:id>')
