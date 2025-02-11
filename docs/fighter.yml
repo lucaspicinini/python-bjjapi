@@ -2,7 +2,7 @@ Retrieve a fighter by a unique slug.
 ---
 tags:
   - Fighter
-operationId: Detail Fighters
+operationId: Detail Fighter
 parameters:
   - name: slug
     in: path

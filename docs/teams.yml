@@ -1,0 +1,58 @@
+Retrieve all teams by page number.
+---
+tags:
+  - Team
+operationId: List Teams
+parameters:
+  - name: page
+    in: query
+    type: integer
+    example: empty or 7
+    description: The page number for this query.
+definitions:
+  Team:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Akxe Jiu Jitsu
+      id:
+        type: integer
+        example: 13
+      fighters:
+        type: array
+        example: ["antonio-alberto-carmona-pequeno-de-barros", "adriana-martins-duarte-pinto"]
+        items:
+          type: string
+  TeamsResponse:
+    type: object
+    properties:
+      total:
+        type: integer
+        example: 554
+      pages:
+        type: integer
+        example: 19
+      current_page:
+        type: integer
+        example: 1
+      per_page:
+        type: integer
+        example: 30
+      has_next:
+        type: boolean
+        example: true
+      has_prev:
+        type: boolean
+        example: false
+      z_data:
+        type: array
+        items:
+          $ref: '#/definitions/Team'
+responses:
+  200:
+    description: Pagination and teams information retrieved successfully.
+    schema:
+      $ref: '#/definitions/TeamsResponse'
+  404:
+    description: Team information not found. Probably the page does not exist.
