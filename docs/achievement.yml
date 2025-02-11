@@ -1,0 +1,22 @@
+Retrieve an achievement by a unique id.
+---
+tags:
+  - Achievement
+operationId: Detail Achievement
+parameters:
+  - name: achievement_id
+    in: path
+    type: integer
+    example: 2
+    description: A unique integer id for an achievement.
+definitions:
+  AchievementResponse:
+    allOf:
+      - $ref: "#/definitions/Achievement"
+responses:
+  200:
+    description: Achievement information retrieved successfully.
+    schema:
+      $ref: '#/definitions/AchievementResponse'
+  404:
+    description: Achievement not found. Probably the id does not exist.

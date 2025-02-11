@@ -1,0 +1,56 @@
+Retrieve all achievements by page number.
+---
+tags:
+  - Achievement
+operationId: List Achievements
+parameters:
+  - name: page
+    in: query
+    type: integer
+    example: empty or 7
+    description: The page number for this query.
+definitions:
+  Achievement:
+    type: object
+    properties:
+      fighter:
+        type: string
+        example: aarae-alexander
+      id:
+        type: integer
+        example: 2
+      name:
+        type: string
+        example: IBJJF Washington Open Champion (2018)
+  AchievementsResponse:
+    type: object
+    properties:
+      total:
+        type: integer
+        example: 1348
+      pages:
+        type: integer
+        example: 45
+      current_page:
+        type: integer
+        example: 1
+      per_page:
+        type: integer
+        example: 30
+      has_next:
+        type: boolean
+        example: true
+      has_prev:
+        type: boolean
+        example: false
+      z_data:
+        type: array
+        items:
+          $ref: '#/definitions/Achievement'
+responses:
+  200:
+    description: Pagination and achievements information retrieved successfully.
+    schema:
+      $ref: '#/definitions/AchievementsResponse'
+  404:
+    description: Achievements information not found. Probably the page does not exist.
