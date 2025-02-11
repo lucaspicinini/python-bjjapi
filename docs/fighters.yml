@@ -1,0 +1,78 @@
+Retrieve all fighters by page number.
+---
+tags:
+  - Fighter
+operationId: List Fighters
+parameters:
+  - name: page
+    in: query
+    type: integer
+    example: empty or 7
+    description: The page number for this query.
+definitions:
+  Fighter:
+    type: object
+    properties:
+      slug:
+        type: string
+        example: rickson-gracie
+      full_name:
+        type: string
+        example: Rickson Gracie
+      nickname:
+        type: string
+        example: Urso/ursinho, embora não seja comumente usado, Pedro Sauer afirmou...
+      biography:
+        type: string
+        example: Rickson Gracie nasceu em 20 de novembro de 1958 no Rio de Janeiro...
+      weight_division:
+        type: string
+        example: Peso Medio (82kg-181lbs)
+      image_url:
+        type: string
+        example: https://www.bjjheroes.com/wp-content/uploads/2014/07/Rickson-Gracie.jpg
+      team:
+        type: string
+        example: Gracie Jiu-Jitsu
+      achievements:
+        type: array
+        example: ["Unbeaten in BJJ Competition", "Unbeaten in NHB", "Unbeaten in MMA 11-0"]
+        items:
+          type: string
+      lineages:
+        type: array
+        example: ["Mitsuyo Maeda > Carlos Gracie > Helio Gracie > Rickson Gracie"]
+        items:
+          type: string
+  FightersResponse:
+    type: object
+    properties:
+      total:
+        type: integer
+        example: 1348
+      pages:
+        type: integer
+        example: 45
+      current_page:
+        type: integer
+        example: 1
+      per_page:
+        type: integer
+        example: 30
+      has_next:
+        type: boolean
+        example: true
+      has_prev:
+        type: boolean
+        example: false
+      z_data:
+        type: array
+        items:
+          $ref: '#/definitions/Fighter'
+responses:
+  200:
+    description: Pagination and fighters information retrieved successfully.
+    schema:
+      $ref: '#/definitions/FightersResponse'
+  404:
+    description: Pagination and fighters information not found. Probably the page does not exist.
