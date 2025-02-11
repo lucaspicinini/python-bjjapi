@@ -1,4 +1,5 @@
 from flask import Flask
+from flasgger import Swagger
 
 from app.config import config
 from app.home.controller import home_bp
@@ -8,11 +9,13 @@ from app.lineages.controller import lineages_bp
 from app.achievements.controller import achievements_bp
 from app.db import db
 
-
 def create_app(config_name: str) -> Flask:
     app = Flask(__name__)
     # app mode
     app.config.from_object(config[config_name])
+
+    # init API Swagger
+    swagger = Swagger(app)
 
     #routes
     app.register_blueprint(home_bp)
