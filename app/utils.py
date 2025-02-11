@@ -9,11 +9,11 @@ def create_pagination(
 ) -> dict[str, int | bool | list[Team | Fighter | Lineage | Achievement]]:
     pagination = model.query.paginate(page=page, per_page=30)
     return {
-        "total": pagination.total,
-        "pages": pagination.pages,
-        "current_page": pagination.page,
-        "per_page": pagination.per_page,
-        "has_next": pagination.has_next,
-        "has_prev": pagination.has_prev,
+        'total': pagination.total,
+        'pages': pagination.pages,
+        'current_page': pagination.page,
+        'per_page': pagination.per_page,
+        'has_next': pagination.has_next,
+        'has_prev': pagination.has_prev,
         'z_data': [m.dto() for m in pagination.items],
     }
