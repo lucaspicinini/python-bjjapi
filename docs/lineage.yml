@@ -1,0 +1,22 @@
+Retrieve a lineage by a unique id.
+---
+tags:
+  - Lineage
+operationId: Detail Lineage
+parameters:
+  - name: lineage_id
+    in: path
+    type: integer
+    example: 20
+    description: A unique integer lineage id.
+definitions:
+  LineageResponse:
+    allOf:
+      - $ref: "#/definitions/Achievement"
+responses:
+  200:
+    description: Lineage information retrieved successfully.
+    schema:
+      $ref: '#/definitions/LineageResponse'
+  404:
+    description: Lineage not found. Probably the id does not exist.
